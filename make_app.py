@@ -1,10 +1,13 @@
 from fasthtml.common import Link, Script, Style, fast_app
 
-from models import SessionLocal, Todo, init_db
+from database import Base, SessionLocal, engine
+from models import Event
 
-# Initialize the database
+
+def init_db():
+    Base.metadata.create_all(bind=engine)
+
 init_db()
-
 
 favicon = Link(rel="icon", href="/static/img/favicon.ico", type="image/x-icon")
 font_awesome_css = Link(rel="stylesheet", href="/static/css/all.min.css")
@@ -25,4 +28,7 @@ async def db_session_middleware(request, call_next):
     finally:
         request.state.db.close()
     return response
+
+
+
 
