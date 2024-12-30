@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 
 from fasthtml.common import (
-    H1,
     A,
     Button,
     Div,
@@ -9,7 +8,6 @@ from fasthtml.common import (
     Input,
     Li,
     Span,
-    Style,
     Ul,
     serve,
 )
@@ -92,38 +90,6 @@ def post(request, todo: TodoForm):
     db.refresh(new_todo)
     
     return list_item(new_todo)
-    # return Li(
-    #     Div(
-    #         Div(
-    #             Span(new_todo.title, cls="text-lg max-w-md truncate block"),
-    #             Span(
-    #                 "○ Pending",
-    #                 cls="mx-8 text-sm text-yellow-400"
-    #             ),
-    #             cls="flex items-center justify-between flex-1"
-    #         ),
-    #         Div(
-    #             A(
-    #                 "✎",
-    #                 href="#",
-    #                 cls="text-blue-400 hover:text-blue-300 text-xl transition-colors px-2",
-    #                 hx_get=f"/todos/{new_todo.id}/edit",
-    #                 hx_target="closest div"
-    #             ),
-    #             A(
-    #                 "×",
-    #                 href="#",
-    #                 cls="text-red-400 hover:text-red-300 text-xl font-bold transition-colors px-2",
-    #                 hx_delete=f"/todos/{new_todo.id}",
-    #                 hx_target="closest li",
-    #                 hx_swap="outerHTML"
-    #             ),
-    #             cls="flex items-center border-l border-l-surface-50"
-    #         ),
-    #         cls="flex items-center justify-between p-4 mb-2 rounded-lg bg-surface-20 hover:bg-surface-30 transition-all"
-    #     ),
-    #     cls="list-none"
-    # )
 
 @rt("/todos/{todo_id}", methods=["DELETE"])
 def delete_todo(request, todo_id: int):

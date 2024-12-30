@@ -1,5 +1,5 @@
 from fasthtml.common import serve
 
-from routes.page import *
+from routes.event import *
 
 serve()

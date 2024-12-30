@@ -1,6 +1,8 @@
 from fasthtml.common import (
     H1,
+    A,
     Div,
+    Img,
     Style,
 )
 
@@ -28,15 +30,24 @@ def create_base_layout(content):
             }
         """),
         Div(
-            H1(
-                "NRCT",
-                cls="text-5xl font-bold text-center text-white"
+            Div(
+                A(
+                    "الصفحة الرئيسية",
+                    href="#",
+                    cls="text-lg mx-4 font-bold text-center text-white hover:underline"
+                ),
+                cls="pr-4"
             ),
-            cls="bg-surface-10 p-12 items-center content-center shadow-lg"
+            A(
+                Img(width='190', src='./static/img/nrct-logo.png', cls='custom-logo'),
+                href="/",
+            ),
+            cls="bg-surface-10 flex py-4 px-6 items-center justify-between shadow-lg"
         ),
         Div(
             content,
             cls="p-8 md:p-12 bg-surface-5"
         ),
+        dir="rtl",
         cls="min-h-screen bg-surface-0 text-white font-rubik"
     )
